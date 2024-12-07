@@ -1,7 +1,7 @@
 # PHP Native Company Profile Web App
 
 ## 1. **Pendahuluan**
-Web aplikasi ini dirancang untuk menampilkan informasi perusahaan secara publik sekaligus menyediakan fitur manajemen data produk melalui admin dashboard. Teknologi yang digunakan berbasis **PHP native** dan **SQLite**, dengan struktur yang efisien dan mudah dikelola.
+Web aplikasi ini dirancang untuk menampilkan informasi perusahaan secara publik sekaligus menyediakan fitur manajemen data produk melalui admin dashboard. Teknologi yang digunakan berbasis **PHP native** dan **MySQL/MariaDB**, dengan struktur yang efisien dan mudah dikelola.
 
 ---
 
@@ -32,13 +32,15 @@ Web aplikasi ini dirancang untuk menampilkan informasi perusahaan secara publik 
 
 ## 4. **Struktur Database**
 
+Database yang digunakan adalah **MySQL/MariaDB**.
+
 ### 4.1 **Tabel Admin**
 Digunakan untuk autentikasi admin.
 ```sql
 CREATE TABLE admin (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );
 ```
 
@@ -46,13 +48,13 @@ CREATE TABLE admin (
 Digunakan untuk menyimpan data produk.
 ```sql
 CREATE TABLE products (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     description TEXT,
-    price REAL NOT NULL,
-    stock INTEGER NOT NULL,
-    category TEXT,
-    image TEXT
+    price DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    category VARCHAR(255),
+    image VARCHAR(255)
 );
 ```
 
@@ -60,13 +62,13 @@ CREATE TABLE products (
 Digunakan untuk menyimpan data tentang perusahaan.
 ```sql
 CREATE TABLE company_info (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    email TEXT,
-    phone TEXT,
+    email VARCHAR(255),
+    phone VARCHAR(20),
     address TEXT,
-    is_active INTEGER DEFAULT 1
+    is_active TINYINT(1) DEFAULT 1
 );
 ```
 
@@ -100,7 +102,6 @@ CREATE TABLE company_info (
 │   └── helpers/
 │       └── Utility.php
 ├── db/
-│   ├── database.sqlite
 │   ├── dbconnection.php
 │   └── migration/
 │       ├── migrate-up.php
@@ -140,7 +141,7 @@ CREATE TABLE company_info (
 
 ## 8. **Teknologi yang Digunakan**
 - **Backend**: PHP native
-- **Database**: SQLite
+- **Database**: MySQL/MariaDB
 - **Frontend**: HTML, CSS, JavaScript (opsional: Bootstrap untuk mempercepat pengembangan UI)
 
 ---
@@ -148,3 +149,4 @@ CREATE TABLE company_info (
 ## 9. **Kesimpulan**
 Konsep ini dirancang untuk menciptakan web aplikasi company profile yang sederhana namun fungsional. Dengan struktur yang modular dan efisien, pengelolaan data perusahaan serta produk dapat dilakukan dengan mudah oleh admin. Selain itu, tampilan publik yang informatif akan meningkatkan citra perusahaan kepada pengunjung.
 
+---
