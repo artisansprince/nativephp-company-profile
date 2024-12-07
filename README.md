@@ -74,7 +74,7 @@ CREATE TABLE company_info (
 
 ## 5. **Struktur Folder**
 ```plaintext
-project/
+.
 ├── index.php
 ├── pages/
 │   ├── public/
@@ -101,7 +101,10 @@ project/
 │       └── Utility.php
 ├── db/
 │   ├── database.sqlite
-│   └── dbconnection.php
+│   ├── dbconnection.php
+│   └── migration/
+│       ├── migrate-up.php
+│       └── migrate-down.php
 └── templates/
     ├── header.php
     └── footer.php
